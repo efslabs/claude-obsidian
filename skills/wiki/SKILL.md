@@ -115,7 +115,18 @@ Route to the correct operation based on what the user says:
 
 Trigger: user describes what the vault is for.
 
-Steps:
+### Modes
+
+| Mode | Writes? | Invocation |
+|---|---|---|
+| **commit (default)** | Uses Write/Edit + `mkdir`. Creates folders, files, CSS snippets, vault CLAUDE.md, git init. | `/wiki`, `scaffold the vault` |
+| **dry-run** | **No Write/Edit, no `mkdir`, no `git init`.** Emit the scaffold plan (folder tree, file list with frontmatter previews, CLAUDE.md preview) via Bash `cat`/`heredoc` to stdout only. | `/wiki --dry-run`, `scaffold the vault, dry-run`, `preview scaffold` |
+
+Triggers: any of `--dry-run`, `dry-run`, `preview`, or `plan` in the user's invocation puts SCAFFOLD in dry-run mode. Read-only inspection (`references/modes.md`, looking for an existing `wiki/` to avoid clobbering it) is allowed in either mode.
+
+**Why stdout-only in dry-run**: scaffold creates 20+ files and several directories in one pass. Dry-run must leave zero filesystem residue so the user can review the full layout — folder tree, frontmatter shapes, CSS snippet, vault CLAUDE.md text — before committing to it. Bash stdout via `cat <<'EOF'` writes nothing to disk; Write/Edit/mkdir do.
+
+### Steps (commit mode)
 
 1. Determine the wiki mode. Read `references/modes.md` to show the 6 options and pick the best fit.
 2. Ask: "What is this vault for?" (one question, then proceed).
@@ -127,6 +138,55 @@ Steps:
 8. Create the vault CLAUDE.md using the template below. Include the `## Custom Frontmatter` section; populate the table if the user named any vault-specific categories, otherwise leave it empty.
 9. Initialize git. Read `references/git-setup.md`.
 10. Present the structure and ask: "Want to adjust anything before we start?"
+
+### Steps (dry-run mode)
+
+Perform steps 1-2 (read-only — pick mode, ask purpose). Then, instead of creating anything, emit the plan via heredoc and stop:
+
+```bash
+cat <<'EOF'
+# Scaffold Plan — dry-run
+Mode: [A/B/C/D/E/F]  ([mode name])
+Purpose: [user's one-sentence answer]
+Target: [absolute path of working directory]
+
+## Folders to create
+wiki/
+wiki/sources/
+wiki/entities/
+wiki/concepts/
+wiki/domains/
+wiki/comparisons/
+wiki/questions/
+wiki/meta/
+_templates/
+_attachments/
+.obsidian/snippets/
+
+## Files to create (with frontmatter)
+- wiki/index.md           (type: meta)
+- wiki/log.md             (type: meta, append-only)
+- wiki/hot.md             (type: meta, ~500 words)
+- wiki/overview.md        (type: meta)
+- wiki/entities/_index.md (type: index)
+- wiki/concepts/_index.md (type: index)
+- wiki/domains/_index.md  (type: index)
+- _templates/source.md, entity.md, concept.md, …
+- .obsidian/snippets/vault-colors.css   (4 custom callouts)
+- CLAUDE.md                              (vault root, see preview below)
+
+## Vault CLAUDE.md preview
+[paste the rendered CLAUDE.md template with [WIKI NAME], purpose, custom frontmatter table interpolated]
+
+## Other actions
+- git init (skipped in dry-run)
+- No .raw/ files touched
+EOF
+```
+
+End with: "Dry-run complete. Re-run without `--dry-run` to commit, or adjust the mode/purpose and re-plan."
+
+Do not call `mkdir`, Write, Edit, or `git init` during dry-run.
 
 ### Vault CLAUDE.md Template
 

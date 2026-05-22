@@ -25,6 +25,60 @@ schema.
 
 ---
 
+## Modes
+
+| Mode | Writes? | Invocation |
+|---|---|---|
+| **commit (default)** | Uses Write/Edit tools. Touches wiki pages, `.raw/.manifest.json`, and (if enabled) `.vault-meta/`. | `ingest foo.md` |
+| **dry-run** | **No Write/Edit tool calls.** Emit the ingest plan (pages to create, pages to update, manifest delta, address allocations) via Bash `cat`/`heredoc` to stdout only. Wait for user approval before committing. | `ingest foo.md --dry-run`, `dry-run ingest foo.md`, `preview ingest foo.md` |
+
+Triggers: any of `--dry-run`, `dry-run`, `preview`, or `plan` in the user's invocation puts the skill in dry-run mode. Without one of those, commit mode is the default (preserves existing behavior).
+
+**Why stdout-only in dry-run**: dry-run must leave zero filesystem residue so the user can inspect the proposed mapping without it appearing in `git status` or polluting `.raw/.manifest.json`. Bash stdout via `cat <<'EOF'` writes nothing to disk; Write/Edit does. Use stdout in dry-run, Write in commit mode.
+
+### Dry-run procedure
+
+1. Read the source completely (same as commit mode).
+2. Read `wiki/index.md` and `wiki/hot.md` to identify which referenced entities/concepts already exist.
+3. **Do not** call `./scripts/allocate-address.sh` — use `./scripts/allocate-address.sh --peek` instead to show the next address(es) that would be assigned, without reserving them.
+4. **Do not** write to `.raw/.manifest.json`. Show the manifest delta that would be applied.
+5. Emit the plan via heredoc:
+
+   ```bash
+   cat <<'EOF'
+   # Ingest Plan — dry-run
+   Source: .raw/articles/example-2026-05-21.md
+   Hash: abc123…  (manifest status: new | changed | unchanged)
+
+   ## Pages to create (N)
+   - wiki/sources/example.md            (type: source, address: c-000102*)
+   - wiki/entities/Acme Corp.md         (type: entity, address: c-000103*)
+   - wiki/concepts/Source-First Synthesis.md  (type: concept, address: c-000104*)
+
+   ## Pages to update (M)
+   - wiki/index.md           (+3 entries)
+   - wiki/hot.md             (rewritten; cache turn)
+   - wiki/log.md             (1 new entry at top)
+   - wiki/domains/_index.md  (+1 row)
+
+   ## Manifest delta
+   sources["…example…"] = { hash, ingested_at, pages_created, pages_updated }
+   address_map gets 3 new entries (c-000102..c-000104)
+
+   ## Contradictions detected
+   - none | [[Existing Page]] vs new claim on X
+
+   * = peeked, not yet reserved
+   EOF
+   ```
+
+6. End with: "Dry-run complete. Re-run without `--dry-run` to commit, or refine and re-plan."
+7. **Do not** update `wiki/log.md`, `wiki/hot.md`, or any page during dry-run.
+
+After a clean dry-run, the user re-invokes without the flag to commit. Address peeks may shift between dry-run and commit if other ingests ran in between; that is expected and not an error.
+
+---
+
 ## Delta Tracking
 
 Before ingesting any file, check `.raw/.manifest.json` to avoid re-processing unchanged sources.
