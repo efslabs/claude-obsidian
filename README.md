@@ -48,7 +48,7 @@ Most Obsidian AI plugins are chat interfaces - they answer questions about your 
 | **Session memory** | Hot cache persists between conversations | No | No |
 | **Vault maintenance** | 8-category lint (orphans, dead links, gaps) | No | No |
 | **Autonomous research** | 3-round web research with gap-filling | No | No |
-| **Multi-model support** | Claude, Gemini, Codex, Cursor, Windsurf | Claude only | Multiple |
+| **Multi-model support** | Claude, Gemini | Claude only | Multiple |
 | **Visual canvas** | Via [claude-canvas](https://github.com/AgriciDaniel/claude-canvas) companion | No | No |
 | **Query with citations** | Cites specific wiki pages | Cites similar notes | Cites notes |
 | **Batch ingestion** | Parallel agents for multiple sources | No | No |

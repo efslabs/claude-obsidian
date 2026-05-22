@@ -237,7 +237,7 @@ ADDR=$(./scripts/allocate-address.sh)
 # ADDR is now e.g. "c-000042"; counter is already incremented
 ```
 
-**CRITICAL**: never use the Write or Edit tool on `.vault-meta/address-counter.txt`. That would fire the PostToolUse hook, which runs `git add wiki/ .raw/` and can accidentally commit unrelated pending wiki changes under a generic message. Counter mutation is **only** permitted through the helper script (Bash tool).
+**CRITICAL**: never use the Write or Edit tool on `.vault-meta/address-counter.txt`. The helper script holds an `flock` while it reads-increments-writes; using Write/Edit bypasses the lock and races with concurrent allocations, producing duplicate addresses. Counter mutation is **only** permitted through the helper script (Bash tool).
 
 ### Helper modes
 
@@ -282,7 +282,7 @@ On a page rename, the skill must update the `address_map` key (old path -> new p
 ### Concurrency policy
 
 - **Single-writer only** in Phase 2. Do not run parallel ingests from multiple Claude sessions or sub-agents that assign addresses. The `flock` in the helper prevents counter corruption but does not serialize page writes themselves.
-- Sub-agents (codex, general-purpose) that are dispatched for research or review MUST NOT call the allocator. They are read-only in this respect.
+- Sub-agents (e.g. general-purpose) that are dispatched for research or review MUST NOT call the allocator. They are read-only in this respect.
 - Multi-writer support is a deferred feature.
 
 ### Batch ingest

@@ -2,6 +2,14 @@
 
 All notable changes to claude-obsidian. Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: [SemVer](https://semver.org/).
 
+## [Unreleased]
+
+### Removed
+
+- **PostToolUse auto-commit hook**: `hooks/hooks.json` no longer auto-commits `wiki/`, `.raw/`, or `.vault-meta/` changes after Write/Edit tool calls. Staging and committing are now entirely the user's responsibility. `skills/wiki-fold/SKILL.md`, `skills/wiki-ingest/SKILL.md`, `docs/dragonscale-guide.md`, and the editor-integration rule files updated to drop references to the hook.
+- **Community Footer instruction** in `skills/wiki/SKILL.md`: the plugin no longer instructs Claude to append a promotional footer (Skool community links) after major operations.
+- **Codex CLI, OpenCode, Cursor, and Windsurf support**: removed `.cursor/` and `.windsurf/` rule directories. `bin/setup-multi-agent.sh` now wires up Gemini CLI only (Claude Code auto-discovers via `.claude-plugin/`). `AGENTS.md`, `README.md`, and `skills/wiki-ingest/SKILL.md` updated to drop references to these agents.
+
 ## [1.6.0] - 2026-04-24
 
 ### Added (DragonScale Mechanism 4, opt-in)

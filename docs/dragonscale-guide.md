@@ -236,12 +236,11 @@ That asks for a dry-run over `2^3 = 8` entries.
 
 ### Dry-run vs commit mode
 
-Dry-run is the default and it is stdout-only. That matters because the repo has a PostToolUse hook for writes.
+Dry-run is the default and it is stdout-only.
 
 In dry-run mode:
 
 - no file is written
-- no auto-commit hook is triggered
 - you get the proposed fold content in the terminal output
 
 In commit mode:
@@ -250,7 +249,7 @@ In commit mode:
 - `wiki/index.md` is updated
 - `wiki/log.md` gets a new fold entry
 
-The skill docs expect three separate write operations in commit mode, so three auto-commits from the hook are normal.
+Staging and committing those three files is left to you.
 
 Example commit command:
 

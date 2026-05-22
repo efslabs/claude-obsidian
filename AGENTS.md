@@ -1,26 +1,18 @@
 # claude-obsidian: Agent Instructions
 
-This repo is a Claude Code plugin **and** an Obsidian vault that builds persistent, compounding knowledge bases using Andrej Karpathy's LLM Wiki pattern. It works with **any AI coding agent** that supports the Agent Skills standard, including Codex CLI, OpenCode, and similar.
+This repo is a Claude Code plugin **and** an Obsidian vault that builds persistent, compounding knowledge bases using Andrej Karpathy's LLM Wiki pattern. The skills follow the cross-platform Agent Skills standard and are also usable from Gemini CLI.
 
-Originally built for Claude Code, the skills follow the cross-platform Agent Skills spec. Newer skills (`wiki-fold`, `wiki-ingest`, `wiki-lint`) use only `name` and `description` frontmatter (kepano convention). Some older skills still carry an optional `allowed-tools` field for Claude Code compatibility; cross-platform agents that do not recognize it should ignore it.
+Originally built for Claude Code. Newer skills (`wiki-fold`, `wiki-ingest`, `wiki-lint`) use only `name` and `description` frontmatter (kepano convention). Some older skills still carry an optional `allowed-tools` field for Claude Code compatibility; agents that do not recognize it should ignore it.
 
 ## Skills Discovery
 
-All skills live in `skills/<name>/SKILL.md`. Codex / OpenCode / other Agent Skills compatible agents will auto-discover them when you symlink the directory:
-
-```bash
-# Codex CLI
-ln -s "$(pwd)/skills" ~/.codex/skills/claude-obsidian
-
-# OpenCode
-ln -s "$(pwd)/skills" ~/.opencode/skills/claude-obsidian
-```
-
-Or run the bundled installer:
+All skills live in `skills/<name>/SKILL.md`. Run the bundled installer to wire them into Gemini CLI's expected location:
 
 ```bash
 bash bin/setup-multi-agent.sh
 ```
+
+(Claude Code auto-discovers skills via `.claude-plugin/`; no symlink needed.)
 
 ## Available Skills
 
