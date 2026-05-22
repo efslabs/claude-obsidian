@@ -251,6 +251,29 @@ sources:
 
 **question**: `question` (the original query), `answer_quality` (draft|solid|definitive)
 
+### Vault-specific extensions
+
+Beyond the universal and type-specific fields, a vault may declare **its own custom
+frontmatter fields** — the plugin schema is not fixed. The vault adds a
+`## Custom Frontmatter` table to its vault-root `CLAUDE.md`:
+
+```markdown
+## Custom Frontmatter
+
+| Field   | Type   | Applies to | Required | Allowed values                    | Open list | Description                    |
+|---------|--------|------------|----------|------------------------------------|-----------|--------------------------------|
+| subtype | string | concept    | optional | quote, lesson, practice, mindset  | no        | Sub-categorizes a concept page |
+```
+
+Columns: **Field** (YAML key) · **Type** (`string`, `date`, `number`, `boolean`,
+`list`, `wikilink`, `wikilink-list`) · **Applies to** (`all` or a list of `type`
+values) · **Required** (`required`/`optional`) · **Allowed values** (controlled
+vocabulary or `—`) · **Open list** (`yes` = new values allowed, `no` = closed set,
+`—` = no list) · **Description**. The `wiki-ingest`, `save`, and `wiki` skills read
+this section at page-creation time and apply each field to pages of the matching
+`type`. If a vault declares none, the baseline schema is used unchanged. Full rules:
+`skills/wiki/references/frontmatter.md` → Vault-Specific Extensions.
+
 ---
 
 ## 4 — Operations
@@ -422,6 +445,17 @@ Created: YYYY-MM-DD
 - .raw/ contains source documents — never modify them
 - wiki/index.md is the master catalog — update on every ingest
 - wiki/log.md is append-only — new entries go at the TOP, never edit past entries
+
+## Custom Frontmatter
+
+Optional. Declare vault-specific frontmatter fields here as a table and the plugin
+skills apply them automatically — no plugin edits needed. Leave the table empty to use
+only the baseline schema. Column rules: see the plugin's
+`skills/wiki/references/frontmatter.md` → Vault-Specific Extensions.
+
+| Field | Type | Applies to | Required | Allowed values | Open list | Description |
+|-------|------|------------|----------|----------------|-----------|-------------|
+|       |      |            |          |                |           |             |
 
 ## Operations
 
@@ -770,6 +804,17 @@ Created: YYYY-MM-DD
 - .raw/ contains source documents — never modify them
 - wiki/index.md is the master catalog — update on every ingest
 - wiki/log.md is append-only — new entries go at the TOP
+
+## Custom Frontmatter
+
+Optional. Declare vault-specific frontmatter fields here as a table and the plugin
+skills apply them automatically — no plugin edits needed. Leave the table empty to use
+only the baseline schema. Column rules: see the plugin's
+`skills/wiki/references/frontmatter.md` → Vault-Specific Extensions.
+
+| Field | Type | Applies to | Required | Allowed values | Open list | Description |
+|-------|------|------------|----------|----------------|-----------|-------------|
+|       |      |            |          |                |           |             |
 
 ## Operations
 

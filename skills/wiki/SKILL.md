@@ -122,9 +122,9 @@ Steps:
 3. Create full folder structure under `wiki/` based on the mode.
 4. Create domain pages + `_index.md` sub-indexes.
 5. Create `wiki/index.md`, `wiki/log.md`, `wiki/hot.md`, `wiki/overview.md`.
-6. Create `_templates/` files for each note type.
+6. Create `_templates/` files for each note type. Include any custom fields declared in the vault `CLAUDE.md`'s `## Custom Frontmatter` section.
 7. Apply visual customization. Read `references/css-snippets.md`. Create `.obsidian/snippets/vault-colors.css`.
-8. Create the vault CLAUDE.md using the template below.
+8. Create the vault CLAUDE.md using the template below. Include the `## Custom Frontmatter` section; populate the table if the user named any vault-specific categories, otherwise leave it empty.
 9. Initialize git. Read `references/git-setup.md`.
 10. Present the structure and ask: "Want to adjust anything before we start?"
 
@@ -152,6 +152,17 @@ Created: YYYY-MM-DD
 - wiki/index.md is the master catalog: update on every ingest
 - wiki/log.md is append-only: never edit past entries
 - New log entries go at the TOP of the file
+
+## Custom Frontmatter
+
+Optional. Declare vault-specific frontmatter fields here and the plugin skills
+(`wiki-ingest`, `save`, `wiki`) apply them automatically — no plugin edits needed.
+Leave the table empty to use only the baseline schema. Column rules: see the plugin's
+`skills/wiki/references/frontmatter.md` → Vault-Specific Extensions.
+
+| Field | Type | Applies to | Required | Allowed values | Open list | Description |
+|-------|------|------------|----------|----------------|-----------|-------------|
+|       |      |            |          |                |           |             |
 
 ## Operations
 
