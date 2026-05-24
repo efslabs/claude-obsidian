@@ -1,6 +1,6 @@
 {
   "name": "claude-obsidian",
-  "version": "1.7.0",
+  "version": "1.7.1",
   "description": "Claude + Obsidian knowledge companion. Sets up a persistent, compounding wiki vault. Covers memory management, session notetaking, knowledge organization, and agent context across projects. Based on Andrej Karpathy's LLM Wiki pattern. Adds Mode G (Guidebook / Personal Practice Library) scaffold mode. Optional DragonScale Memory extension adds hierarchical log folds, deterministic page addresses, embedding-based semantic tiling lint, and boundary-first autoresearch topic selection. Fork of AgriciDaniel/claude-obsidian.",
   "author": {
     "name": "efslabs",

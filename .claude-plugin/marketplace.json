@@ -6,7 +6,7 @@
   },
   "metadata": {
     "description": "claude-obsidian: Claude + Obsidian knowledge companion. Fork of AgriciDaniel/claude-obsidian, maintained by efslabs.",
-    "version": "1.7.0"
+    "version": "1.7.1"
   },
   "plugins": [
     {
@@ -17,7 +17,7 @@
         "ref": "main"
       },
       "description": "Claude + Obsidian knowledge companion. Sets up a persistent, compounding wiki vault. Covers memory management, session notetaking, knowledge organization, and agent context across projects. Adds Mode G (Guidebook / Personal Practice Library) scaffold mode. Optional DragonScale Memory extension adds hierarchical log folds, deterministic page addresses, embedding-based semantic tiling lint, and boundary-first autoresearch topic selection. Fork of AgriciDaniel/claude-obsidian.",
-      "version": "1.7.0",
+      "version": "1.7.1",
       "author": {
         "name": "efslabs",
         "url": "https://github.com/efslabs"
