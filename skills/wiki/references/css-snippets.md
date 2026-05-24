@@ -120,3 +120,58 @@ If you don't want custom callouts, replace them with built-ins:
 ## Minimal Theme (Recommended)
 
 The color scheme looks best with the Minimal theme. Install via Settings > Appearance > Manage > search "Minimal".
+
+---
+
+## Mode G Variant (Guidebook / Personal Practice Library)
+
+Mode G uses eight function folders instead of the default set. Use this
+`vault-colors.css` instead of the one above when scaffolding a Mode G vault. The
+colors group by function: doing/acting in warm tones, understanding in cool tones,
+the `scenarios/` retrieval layer in a high-visibility green, sources/entities dimmed.
+
+```css
+:root {
+  --wiki-1: #4fc1ff;  /* concepts   — cool: theory to understand */
+  --wiki-2: #c586c0;  /* lessons    — cool: distilled teachings */
+  --wiki-3: #dcdcaa;  /* mindsets   — warm: principles & mantras */
+  --wiki-4: #ce9178;  /* practices  — warm: things you do */
+  --wiki-5: #6a9955;  /* scenarios  — green: the retrieval entry point */
+  --wiki-6: #d16969;  /* frameworks — warm: multi-step systems */
+  --wiki-7: #569cd6;  /* meta       — blue-gray: catalog/dashboards */
+}
+
+/* Folder colors in file explorer */
+.nav-folder-title[data-path^="wiki/practices"]  { color: var(--wiki-4); }
+.nav-folder-title[data-path^="wiki/mindsets"]   { color: var(--wiki-3); }
+.nav-folder-title[data-path^="wiki/frameworks"] { color: var(--wiki-6); }
+.nav-folder-title[data-path^="wiki/concepts"]   { color: var(--wiki-1); }
+.nav-folder-title[data-path^="wiki/lessons"]    { color: var(--wiki-2); }
+.nav-folder-title[data-path^="wiki/scenarios"]  { color: var(--wiki-5); font-weight: 600; }
+.nav-folder-title[data-path^="wiki/sources"]    { color: #808080; }
+.nav-folder-title[data-path^="wiki/entities"]   { color: #909090; }
+.nav-folder-title[data-path^="wiki/meta"]       { color: var(--wiki-7); }
+.nav-folder-title[data-path=".raw"]             { color: #808080; opacity: 0.6; }
+
+/* Custom callouts — same four as the default snippet */
+.callout[data-callout='contradiction'] {
+  --callout-color: 209, 105, 105;
+  --callout-icon: lucide-alert-triangle;
+}
+.callout[data-callout='gap'] {
+  --callout-color: 220, 220, 170;
+  --callout-icon: lucide-help-circle;
+}
+.callout[data-callout='key-insight'] {
+  --callout-color: 79, 193, 255;
+  --callout-icon: lucide-lightbulb;
+}
+.callout[data-callout='stale'] {
+  --callout-color: 128, 128, 128;
+  --callout-icon: lucide-clock;
+}
+```
+
+Graph View groups for Mode G: color `path:wiki/scenarios` green (it is the entry
+point), `path:wiki/practices` + `path:wiki/frameworks` warm, `path:wiki/concepts` +
+`path:wiki/lessons` cool, `path:.raw` dimmed gray.

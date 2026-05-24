@@ -156,7 +156,7 @@ Three snippets are auto-enabled by `setup-vault.sh`:
 
 ---
 
-## Six Wiki Modes
+## Seven Wiki Modes
 
 | Mode | Use when |
 |------|---------|
@@ -166,6 +166,7 @@ Three snippets are auto-enabled by `setup-vault.sh`:
 | **D: Personal** | Second brain, goals, journal synthesis |
 | **E: Research** | Papers, concepts, thesis |
 | **F: Book/Course** | Chapter tracker, course notes |
+| **G: Guidebook** | Personal practice library — techniques, mantras, scenario-based retrieval |
 
 Modes can be combined.
 

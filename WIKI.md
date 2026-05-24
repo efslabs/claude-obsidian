@@ -283,7 +283,7 @@ Trigger: user describes what the vault is for.
 
 You can combine modes. "GitHub repo + research on the AI approach" uses Mode B folders plus Mode E papers/ folder.
 
-### 4.1a — The Six Wiki Modes
+### 4.1a — The Wiki Modes (A–G)
 
 **Mode A: Website / Sitemap**
 
@@ -399,6 +399,33 @@ Frontmatter for concepts/: `source_chapters`, `first_appearance`
 
 Key pages: `[[Book Overview]]`, `[[Theme Map]]`, `[[Character / Expert Index]]`, `[[My Takeaways]]`
 
+---
+
+**Mode G: Guidebook / Personal Practice Library**
+
+A curated library of techniques, mantras, frameworks, and distilled teachings the
+user reaches for to handle a moment or mental state. Organizes by **function**, and
+makes scenario-based retrieval a first-class folder.
+
+```
+vault/
+├── .raw/              # source transcripts, articles, clippings, book notes
+├── wiki/
+│   ├── practices/     # things you DO — meditations, exercises, drills
+│   ├── mindsets/      # principles & mantras — short re-orienting lines
+│   ├── frameworks/    # multi-step systems — dopamine menu, planning templates
+│   ├── concepts/      # theory to understand
+│   ├── lessons/       # distilled teachings from one source
+│   ├── scenarios/     # FIRST-CLASS retrieval — one page per felt state
+│   ├── sources/       # one summary page per .raw source
+│   └── entities/      # teachers, authors, coaches, orgs, apps
+│       meta/topics.md # living topics-slug vocabulary
+```
+
+Frontmatter: `type` (practice|mindset|framework|concept|lesson|scenario|source|entity, scalar), `topics` (slug list), `status` (seed|developing|mature|evergreen), `source`. Scenario pages add `state`, `triggers`.
+
+Key pages: `[[Library Overview]]`, the `scenarios/` set, `[[Daily Drivers]]`, `wiki/meta/topics.md`. Full spec in `skills/wiki/references/modes.md`.
+
 ### 4.1b — Vault CLAUDE.md Template
 
 Create this in the vault root when scaffolding a new project vault:
@@ -406,7 +433,7 @@ Create this in the vault root when scaffolding a new project vault:
 ```markdown
 # [WIKI NAME] — LLM Wiki
 
-Mode: [MODE A/B/C/D/E/F]
+Mode: [MODE A/B/C/D/E/F/G]
 Purpose: [ONE SENTENCE]
 Owner: [NAME]
 Created: YYYY-MM-DD
@@ -754,7 +781,7 @@ When creating a wiki for a new project (not this plugin), create a CLAUDE.md at 
 ```markdown
 # [WIKI NAME] — LLM Wiki
 
-Mode: [MODE A/B/C/D/E/F]
+Mode: [MODE A/B/C/D/E/F/G]
 Purpose: [ONE SENTENCE]
 Owner: [NAME]
 Created: YYYY-MM-DD
