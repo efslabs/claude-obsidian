@@ -22,7 +22,7 @@ Work through these in order:
 3. **Stale claims**. Assertions on older pages that newer sources have contradicted or updated.
 4. **Missing pages**. Concepts or entities mentioned in multiple pages but lacking their own page.
 5. **Missing cross-references**. Entities mentioned in a page but not linked.
-6. **Frontmatter gaps**. Pages missing required fields. Baseline required: `type`, `status`, `created`, `updated`, `tags`. Plus any vault-declared custom field marked `required` — see **Custom Frontmatter Validation** below.
+6. **Frontmatter gaps**. Pages missing required fields (type, status, created, updated, tags).
 7. **Empty sections**. Headings with no content underneath.
 8. **Stale index entries**. Items in `wiki/index.md` pointing to renamed or deleted pages.
 9. **Address validity** (DragonScale Mechanism 2). For every page that has an `address:` frontmatter field, validate the format. See the **Address Validation** section below.
@@ -69,11 +69,6 @@ status: developing
 
 ## Cross-Reference Gaps
 - [[Entity Name]] mentioned in [[Page A]] without a wikilink.
-
-## Custom Frontmatter
-- [[Page Name]]: missing required field `subtype` (declared for type: concept).
-- [[Page Name]]: field `subtype` value "anecdote" not in closed list: quote, lesson, practice, mindset, framework.
-- [[Page Name]]: undeclared custom field `mood` — not in the vault's Custom Frontmatter table.
 ```
 
 ---
@@ -101,35 +96,6 @@ During lint, flag pages that violate the style guide:
 - Missing source citations where claims are made
 - Uncertainty not flagged with `> [!gap]`
 - Contradictions not flagged with `> [!contradiction]`
-
----
-
-## Custom Frontmatter Validation
-
-A vault may declare extra frontmatter fields in a `## Custom Frontmatter` section of
-its vault-root `CLAUDE.md` (see the **Vault-Specific Extensions** section of
-`skills/wiki/references/frontmatter.md`). If that section is absent, skip this check
-entirely.
-
-When it is present, read the table and, for each declared field:
-
-1. **Required-field gaps.** For a field marked `required`, every page whose `type`
-   matches the field's **Applies to** must have the field. Flag pages that lack it.
-2. **Closed-vocabulary violations.** For a field whose **Allowed values** is a list
-   and whose **Open list** is `no`, the page's value must be one of the listed
-   values. Flag any value outside the list as an error.
-3. **Open-list values pass.** When **Open list** is `yes`, any value is acceptable —
-   do not flag values outside the list; the list is only a set of suggestions.
-4. **Type sanity.** Optionally check the value shape against the declared **Type**
-   (e.g. a `date` field holds `YYYY-MM-DD`; a `list` field is a YAML list). Report
-   mismatches as informational, not errors.
-5. **Undeclared fields.** A custom field present on a page but absent from the table
-   is reported as informational — never strip or rewrite it; let the user decide
-   whether to add it to the schema or remove it.
-
-Report findings under the "Custom Frontmatter" section of the lint report.
-Required-field gaps may also be summarized alongside baseline gaps under
-"Frontmatter Gaps".
 
 ---
 
@@ -387,7 +353,7 @@ See [[tiling-report-YYYY-MM-DD]] for the full pair listing.
 Always show the lint report first. Ask: "Should I fix these automatically, or do you want to review each one?"
 
 Safe to auto-fix:
-- Adding missing baseline frontmatter fields with placeholder values
+- Adding missing frontmatter fields with placeholder values
 - Creating stub pages for missing entities
 - Adding wikilinks for unlinked mentions
 
@@ -395,5 +361,3 @@ Needs review before fixing:
 - Deleting orphan pages (they might be intentionally isolated)
 - Resolving contradictions (requires human judgment)
 - Merging duplicate pages
-- Filling a missing custom field that has a closed value list — no safe placeholder exists; it needs a real value
-- Adding or removing undeclared custom fields — the user decides whether to extend the schema

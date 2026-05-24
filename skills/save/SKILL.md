@@ -87,18 +87,6 @@ status: active
 
 ---
 
-### Vault-specific fields
-
-If the vault-root `CLAUDE.md` has a `## Custom Frontmatter` section, also apply any
-declared field whose **Applies to** matches this note's `type`. Format each value per
-its declared **Type**, and respect its **Allowed values** / **Open list** setting —
-a closed list (**Open list** = `no`) permits only the listed values; an open list
-(`yes`) also allows new ones. See the **Vault-Specific Extensions** section of
-`skills/wiki/references/frontmatter.md` for the full rules. If the vault declares
-none, use the baseline template above unchanged.
-
----
-
 ## Writing Style
 
 - Declarative, present tense. Write the knowledge, not the conversation.

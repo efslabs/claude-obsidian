@@ -11,20 +11,6 @@ Read the source. Write the wiki. Cross-reference everything. A single source typ
 
 ---
 
-## Frontmatter
-
-Every page created or updated during ingest uses the schema in
-`references/frontmatter.md` — universal fields, type-specific fields, **plus any
-vault-specific custom fields the vault declares**. Before writing pages, read the
-vault-root `CLAUDE.md` for a `## Custom Frontmatter` section; if present, apply each
-declared field to pages whose `type` it targets, formatting each value per its
-declared **Type** and respecting its **Allowed values** / **Open list** setting. See
-the **Vault-Specific Extensions** section of `references/frontmatter.md` for the full
-declaration format and rules. If the vault declares none, proceed with the baseline
-schema.
-
----
-
 ## Modes
 
 | Mode | Writes? | Invocation |
