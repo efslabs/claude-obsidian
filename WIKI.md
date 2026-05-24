@@ -404,8 +404,8 @@ Key pages: `[[Book Overview]]`, `[[Theme Map]]`, `[[Character / Expert Index]]`,
 **Mode G: Guidebook / Personal Practice Library**
 
 A curated library of techniques, mantras, frameworks, and distilled teachings the
-user reaches for to handle a moment or mental state. Organizes by **function**, and
-makes scenario-based retrieval a first-class folder.
+user reaches for to handle a moment or mental state. Organizes pages by
+**function** — what you *do* with the page — rather than by life area.
 
 ```
 vault/
@@ -416,15 +416,17 @@ vault/
 │   ├── frameworks/    # multi-step systems — dopamine menu, planning templates
 │   ├── concepts/      # theory to understand
 │   ├── lessons/       # distilled teachings from one source
-│   ├── scenarios/     # FIRST-CLASS retrieval — one page per felt state
+│   ├── scenarios/     # one page per felt state — "When I'm overwhelmed"
 │   ├── sources/       # one summary page per .raw source
 │   └── entities/      # teachers, authors, coaches, orgs, apps
-│       meta/topics.md # living topics-slug vocabulary
 ```
 
-Frontmatter: `type` (practice|mindset|framework|concept|lesson|scenario|source|entity, scalar), `topics` (slug list), `status` (seed|developing|mature|evergreen), `source`. Scenario pages add `state`, `triggers`.
+Uses the shared frontmatter schema (Section 3) with one override: `status:` is
+`seed | active | retired` (a guidebook entry is in the library or retired, not
+"mature"). Subject classification via `tags:` (no parallel taxonomy). Scenario
+pages add `state`, `triggers`; lesson pages add `author`, `series`.
 
-Key pages: `[[Library Overview]]`, the `scenarios/` set, `[[Daily Drivers]]`, `wiki/meta/topics.md`. Full spec in `skills/wiki/references/modes.md`.
+Key pages: `[[Library Overview]]`, the `scenarios/` set, `[[Daily Drivers]]`. Full spec in `skills/wiki/references/modes.md`.
 
 ### 4.1b — Vault CLAUDE.md Template
 

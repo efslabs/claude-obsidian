@@ -128,7 +128,7 @@ The color scheme looks best with the Minimal theme. Install via Settings > Appea
 Mode G uses eight function folders instead of the default set. Use this
 `vault-colors.css` instead of the one above when scaffolding a Mode G vault. The
 colors group by function: doing/acting in warm tones, understanding in cool tones,
-the `scenarios/` retrieval layer in a high-visibility green, sources/entities dimmed.
+scenarios in green, sources/entities dimmed.
 
 ```css
 :root {
@@ -136,7 +136,7 @@ the `scenarios/` retrieval layer in a high-visibility green, sources/entities di
   --wiki-2: #c586c0;  /* lessons    — cool: distilled teachings */
   --wiki-3: #dcdcaa;  /* mindsets   — warm: principles & mantras */
   --wiki-4: #ce9178;  /* practices  — warm: things you do */
-  --wiki-5: #6a9955;  /* scenarios  — green: the retrieval entry point */
+  --wiki-5: #6a9955;  /* scenarios  — green: felt-state pages */
   --wiki-6: #d16969;  /* frameworks — warm: multi-step systems */
   --wiki-7: #569cd6;  /* meta       — blue-gray: catalog/dashboards */
 }
@@ -147,7 +147,7 @@ the `scenarios/` retrieval layer in a high-visibility green, sources/entities di
 .nav-folder-title[data-path^="wiki/frameworks"] { color: var(--wiki-6); }
 .nav-folder-title[data-path^="wiki/concepts"]   { color: var(--wiki-1); }
 .nav-folder-title[data-path^="wiki/lessons"]    { color: var(--wiki-2); }
-.nav-folder-title[data-path^="wiki/scenarios"]  { color: var(--wiki-5); font-weight: 600; }
+.nav-folder-title[data-path^="wiki/scenarios"]  { color: var(--wiki-5); }
 .nav-folder-title[data-path^="wiki/sources"]    { color: #808080; }
 .nav-folder-title[data-path^="wiki/entities"]   { color: #909090; }
 .nav-folder-title[data-path^="wiki/meta"]       { color: var(--wiki-7); }
@@ -172,6 +172,6 @@ the `scenarios/` retrieval layer in a high-visibility green, sources/entities di
 }
 ```
 
-Graph View groups for Mode G: color `path:wiki/scenarios` green (it is the entry
-point), `path:wiki/practices` + `path:wiki/frameworks` warm, `path:wiki/concepts` +
+Graph View groups for Mode G: color `path:wiki/scenarios` green,
+`path:wiki/practices` + `path:wiki/frameworks` warm, `path:wiki/concepts` +
 `path:wiki/lessons` cool, `path:.raw` dimmed gray.

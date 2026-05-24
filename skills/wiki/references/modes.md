@@ -256,10 +256,8 @@ mantras I can reach for", "second brain for self-improvement content"
 
 Mode G is for a curated library of *techniques, principles, frameworks, and
 distilled teachings* that the user reaches for to handle a moment or a mental
-state. It differs from Mode D (Second Brain) in two ways: it organizes pages by
-**function** — what you *do* with the page — rather than by life area, and it
-treats **scenario-based retrieval as a first-class folder**. The defining question
-a Mode G vault answers is *"I feel X / I'm stuck on Y — what helps?"*
+state. It differs from Mode D (Second Brain) by organizing pages by **function** —
+what you *do* with the page — rather than by life area.
 
 ```
 vault/
@@ -270,7 +268,7 @@ vault/
 │   ├── frameworks/    # multi-step systems — dopamine menu, planning templates
 │   ├── concepts/      # theory to understand — automatic thoughts, flow state
 │   ├── lessons/       # distilled teachings from one source — a lecture, a chapter
-│   ├── scenarios/     # FIRST-CLASS retrieval layer — one page per felt state
+│   ├── scenarios/     # one page per felt state — "When I'm overwhelmed"
 │   ├── sources/       # one summary page per ingested .raw source
 │   ├── entities/      # teachers, authors, coaches, orgs, apps
 │   ├── index.md       # master catalog
@@ -278,8 +276,7 @@ vault/
 │   ├── overview.md    # executive summary of the library
 │   ├── log.md         # append-only operations log
 │   └── meta/
-│       └── topics.md  # living topics-slug vocabulary (see "Living topics" below)
-├── _templates/        # one Templater file per type
+├── _templates/        # one Templater file per Mode-G type
 ├── _attachments/      # images / PDFs referenced by pages
 └── CLAUDE.md
 ```
@@ -295,7 +292,7 @@ The folder a page lands in is decided by its **primary function**:
 | `frameworks/` | a multi-step system or template | dopamine menu, daily-planning template |
 | `concepts/` | theory to *understand* | automatic thoughts, flow state |
 | `lessons/` | a distilled teaching from one source | a Waking Up session, a book chapter |
-| `scenarios/` | an entry point for a felt state | "When I'm overwhelmed", "When I can't start" |
+| `scenarios/` | a felt state with pointers to what helps | "When I'm overwhelmed", "When I can't start" |
 | `entities/` | a teacher, author, coach, org, or app | William B. Irvine, an ADHD coach |
 | `sources/` | a summary of one raw source | the transcript or article a lesson came from |
 
@@ -305,22 +302,36 @@ its **primary** function for the folder; the secondary is noted in prose or `tag
 
 ### Frontmatter for Mode G pages
 
+Mode G uses the **shared frontmatter schema** (see `WIKI.md` § 3) with a small
+set of type-specific extras. Subject classification uses `tags:`, the same field
+every other mode uses. **Don't put the type in tags** — `type:` already says that
+and duplicating it just inflates the tag pane. Tags are the subject axis only.
+
 ```yaml
 ---
 type: practice          # practice | mindset | framework | concept | lesson | scenario | source | entity
 title: "Human-Readable Title"
-topics: [slug, slug]    # lowercase-hyphen content slugs — the subject axis
-status: seed            # seed | developing | mature | evergreen
-source: book            # waking-up | masterclass | book | app | podcast | coach | article | personal | unknown
+status: active          # seed | active | retired
 created: YYYY-MM-DD
 updated: YYYY-MM-DD
-tags: []                # workflow/lifecycle only — FAVORITE, daily-driver
+tags:                   # subject tags only — lowercase, hyphen-separated
+  - emotional-regulation
+  - breathing
 related:
   - "[[Other Page]]"
 sources:
   - "[[.raw/articles/source.md]]"
 ---
 ```
+
+**Status enum** (Mode G overrides the universal `seed | developing | mature |
+evergreen`):
+
+| `status:` | Meaning |
+|---|---|
+| `seed` | captured from a source, not yet usable on its own |
+| `active` | in the library, ready to reach for |
+| `retired` | kept for reference, no longer recommended (superseded practice, abandoned mindset) |
 
 Type-specific additions:
 
@@ -332,29 +343,37 @@ triggers: ["too much to do", "spinning"]   # phrases / situations that map here
 # lesson
 author: "William B. Irvine"
 series: "[[Stoic Path]]"
-
-# entity
-entity_type: person                        # person | organization | app
-role: "ADHD coach"
 ```
 
-`topics:` is the **subject** axis; the function folder is the **function** axis.
-They are orthogonal — a `practice` and a `lesson` can share `topics: [stoicism]`,
-and one slug query finds both.
+For `concept`, `entity`, and `source` pages, use the **shared templates** at
+`_templates/concept.md`, `_templates/entity.md`, and `_templates/source.md`. Mode G
+ships dedicated templates only for the new types: `practice`, `mindset`,
+`framework`, `lesson`, and `scenario`.
 
-### Living topics vocabulary
+### Subject-tag starter vocabulary
 
-The `topics:` slug list is **not frozen**. It lives in `wiki/meta/topics.md`, a
-plain list of slugs with one-line glosses. Scaffold seeds it with a starter set.
-During ingest, when content does not fit an existing slug, propose a new slug and
-append it to `topics.md`. During lint, flag near-duplicate slugs for merging. The
-taxonomy improves as the library grows instead of going stale.
+Seed `tags:` from this starter list and grow it organically. `wiki-lint` flags
+near-duplicates and singletons for cleanup (see `skills/wiki-lint/SKILL.md` §
+Tag Vocabulary).
+
+```
+acceptance, adhd, body-awareness, breathing, cbt, cognitive-reframing,
+communication, dbt, discomfort, dopamine, emotional-regulation, energy,
+exercise, failure, focus, gratitude, habits, identity, journaling, meaning,
+meditation, mindfulness, momentum, mortality, organization,
+prime-the-environment, procrastination, productivity, reflection-prompt,
+relationships, resilience, routines, self-awareness, self-compassion, sleep,
+stoicism, task-initiation, task-management, time-management, values,
+visualization, work
+```
+
 
 ### The scenarios/ folder
 
-`scenarios/` is the headline feature — the user's real entry point. Each page names
-a felt state and routes to the practices/frameworks that help, ordered as a
-first/then/if-still sequence. Example — `wiki/scenarios/When I'm Overwhelmed.md`:
+`scenarios/` is just another folder, discoverable through `wiki/index.md` like any
+other. Each page names a felt state and routes to the practices/frameworks that
+help, typically as a first/then/if-still sequence. Example
+— `wiki/scenarios/When I'm Overwhelmed.md`:
 
 ```markdown
 ---
@@ -362,10 +381,12 @@ type: scenario
 title: "When I'm Overwhelmed"
 state: overwhelmed
 triggers: ["too much to do", "can't think straight", "spinning"]
-topics: [emotional-regulation, productivity]
-status: developing
+status: active
 created: 2026-05-24
 updated: 2026-05-24
+tags:
+  - emotional-regulation
+  - productivity
 ---
 
 # When I'm Overwhelmed
@@ -375,20 +396,8 @@ Then: [[Brain Dump]] — get it out of your head and onto paper.
 If still spinning: [[TIPP]] — physiological reset.
 ```
 
-`wiki-query` should read `scenarios/` first when a question describes a state or
-situation ("I'm scattered, what helps?"), the same way it reads `hot.md` first.
-
-### Granularity / atomization
-
-Atomize a source page **when it bundles units you would retrieve separately**. Test:
-*would you ever want one item from this page without the others?* A single-idea page
-stays whole regardless of length; a compiled list of unrelated tips becomes one page
-per tip, because the `scenarios/` layer links to *specific* practices. Atomic pages
-are retrieval targets; compiled lists are not. Propose splits for approval rather
-than auto-splitting.
-
-Key wiki pages to create: `[[Library Overview]]`, the `scenarios/` set, a curated
-`[[Daily Drivers]]` shortlist, and `wiki/meta/topics.md`.
+Key wiki pages to create: `[[Library Overview]]`, the `scenarios/` set, and a
+curated `[[Daily Drivers]]` shortlist.
 
 ---
 

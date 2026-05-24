@@ -1,12 +1,10 @@
 ---
 type: mindset
 title: "<% tp.file.title %>"
-topics: []
-status: seed
-source: unknown
+status: seed                                # seed | active | retired
 created: <% tp.date.now("YYYY-MM-DD") %>
 updated: <% tp.date.now("YYYY-MM-DD") %>
-tags: []
+tags: []                                    # subject tags from the starter vocabulary
 related: []
 sources: []
 ---
