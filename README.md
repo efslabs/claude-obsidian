@@ -168,7 +168,7 @@ Your executive assistant, coding projects, and content workflows all draw from t
 | D: Personal | Second brain, goals, journal synthesis |
 | E: Research | Papers, concepts, thesis |
 | F: Book/Course | Chapter tracker, course notes |
-| G: Guidebook | Personal practice library — techniques, mantras, scenario-based retrieval |
+| G: Guidebook | Personal practice library — techniques, mantras, frameworks, scenarios |
 
 Modes can be combined.
 

@@ -3,11 +3,10 @@ type: scenario
 title: "<% tp.file.title %>"
 state: ""
 triggers: []
-topics: []
-status: seed
+status: seed                                # seed | active | retired
 created: <% tp.date.now("YYYY-MM-DD") %>
 updated: <% tp.date.now("YYYY-MM-DD") %>
-tags: []
+tags: []                                    # subject tags from the starter vocabulary
 related: []
 ---
 

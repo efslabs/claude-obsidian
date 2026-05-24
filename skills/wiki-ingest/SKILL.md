@@ -176,6 +176,26 @@ Steps:
 
 ---
 
+## Granularity / Atomization
+
+A wiki page is a retrieval target. Decide whether a source becomes one page or
+several by asking: **would I ever want one item from this without the others?**
+
+- **Single-idea sources stay whole** regardless of length. A 2,000-word essay
+  arguing one thesis is one page.
+- **Compiled lists become one page per item** when the items are independently
+  useful. "12 techniques for X" becomes 12 pages plus a hub page that links them,
+  because the wiki will be asked for *specific* techniques. The compiled list
+  alone is not a useful retrieval target.
+- **Bundled sources get split** when they cover unrelated topics. A podcast
+  episode with three guests on three subjects becomes three sources.
+
+Propose splits for user approval rather than auto-splitting. Surface the split
+plan in the ingest summary: "I'd suggest splitting this into N pages: ...".
+Atomic pages link back to a parent hub page so the original grouping is not lost.
+
+---
+
 ## Batch Ingest
 
 Trigger: user drops multiple files or says "ingest all of these."
