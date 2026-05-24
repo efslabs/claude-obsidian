@@ -250,7 +250,6 @@ Enable in **Settings → Community Plugins → enable**:
 | Plugin | Purpose |
 |--------|---------|
 | **Templater** | Auto-fills frontmatter from `_templates/` |
-| **Obsidian Git** | Auto-commits vault every 15 minutes |
 | **Dataview** *(optional/legacy)* | Only needed for the legacy `wiki/meta/dashboard.md` queries. The primary dashboard now uses Bases. |
 
 Also install the **[Obsidian Web Clipper](https://obsidian.md/clipper)** browser extension. Sends web pages to `.raw/` in one click.

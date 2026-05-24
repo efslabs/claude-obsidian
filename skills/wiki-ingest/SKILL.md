@@ -34,7 +34,7 @@ schema.
 
 Triggers: any of `--dry-run`, `dry-run`, `preview`, or `plan` in the user's invocation puts the skill in dry-run mode. Without one of those, commit mode is the default (preserves existing behavior).
 
-**Why stdout-only in dry-run**: dry-run must leave zero filesystem residue so the user can inspect the proposed mapping without it appearing in `git status` or polluting `.raw/.manifest.json`. Bash stdout via `cat <<'EOF'` writes nothing to disk; Write/Edit does. Use stdout in dry-run, Write in commit mode.
+**Why stdout-only in dry-run**: dry-run must leave zero filesystem residue so the user can inspect the proposed mapping without any files being created or `.raw/.manifest.json` being polluted. Bash stdout via `cat <<'EOF'` writes nothing to disk; Write/Edit does. Use stdout in dry-run, Write in commit mode.
 
 ### Dry-run procedure
 

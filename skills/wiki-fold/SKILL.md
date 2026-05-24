@@ -32,9 +32,9 @@ When referring to level in frontmatter, use `batch_exponent: k` (not `level: k`)
 | Mode | Writes? | Invocation |
 |---|---|---|
 | **dry-run (default)** | **No Write tool calls.** Emit fold content via Bash `cat`/`heredoc` to stdout only. | `fold the log, dry-run k=3` |
-| **commit** | Uses Write/Edit tools. Compose full content first, then sequence writes. Staging and committing is left to the user. | `fold the log, commit k=3` (only after a clean dry-run) |
+| **commit** | Uses Write/Edit tools. Compose full content first, then sequence writes. | `fold the log, commit k=3` (only after a clean dry-run) |
 
-**Why stdout-only in dry-run**: dry-run must leave zero filesystem residue so the user can inspect the proposed fold without it appearing in `git status`. Bash stdout via `cat <<'EOF'` writes nothing to disk; Write/Edit does. Use stdout in dry-run, Write in commit mode.
+**Why stdout-only in dry-run**: dry-run must leave zero filesystem residue so the user can inspect the proposed fold without any files being created. Bash stdout via `cat <<'EOF'` writes nothing to disk; Write/Edit does. Use stdout in dry-run, Write in commit mode.
 
 ---
 
@@ -133,7 +133,7 @@ If any check fails, abort and report the specific failure.
    - Children: N log entries
    ```
 
-Report the three changed paths back to the user. Staging and committing is the user's call.
+Report the three changed paths back to the user.
 
 ---
 
@@ -171,7 +171,7 @@ Committed fold reversal, in this order:
 2. Remove the index.md entry.
 3. Delete the fold page file.
 
-Or `git revert` the commit(s) the user made for the fold. Child pages are untouched in either path.
+Child pages are untouched.
 
 ---
 

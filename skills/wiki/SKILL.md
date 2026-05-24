@@ -119,8 +119,8 @@ Trigger: user describes what the vault is for.
 
 | Mode | Writes? | Invocation |
 |---|---|---|
-| **commit (default)** | Uses Write/Edit + `mkdir`. Creates folders, files, CSS snippets, vault CLAUDE.md, git init. | `/wiki`, `scaffold the vault` |
-| **dry-run** | **No Write/Edit, no `mkdir`, no `git init`.** Emit the scaffold plan (folder tree, file list with frontmatter previews, CLAUDE.md preview) via Bash `cat`/`heredoc` to stdout only. | `/wiki --dry-run`, `scaffold the vault, dry-run`, `preview scaffold` |
+| **commit (default)** | Uses Write/Edit + `mkdir`. Creates folders, files, CSS snippets, vault CLAUDE.md. | `/wiki`, `scaffold the vault` |
+| **dry-run** | **No Write/Edit, no `mkdir`.** Emit the scaffold plan (folder tree, file list with frontmatter previews, CLAUDE.md preview) via Bash `cat`/`heredoc` to stdout only. | `/wiki --dry-run`, `scaffold the vault, dry-run`, `preview scaffold` |
 
 Triggers: any of `--dry-run`, `dry-run`, `preview`, or `plan` in the user's invocation puts SCAFFOLD in dry-run mode. Read-only inspection (`references/modes.md`, looking for an existing `wiki/` to avoid clobbering it) is allowed in either mode.
 
@@ -136,8 +136,7 @@ Triggers: any of `--dry-run`, `dry-run`, `preview`, or `plan` in the user's invo
 6. Create `_templates/` files for each note type. Include any custom fields declared in the vault `CLAUDE.md`'s `## Custom Frontmatter` section.
 7. Apply visual customization. Read `references/css-snippets.md`. Create `.obsidian/snippets/vault-colors.css`.
 8. Create the vault CLAUDE.md using the template below. Include the `## Custom Frontmatter` section; populate the table if the user named any vault-specific categories, otherwise leave it empty.
-9. Initialize git. Read `references/git-setup.md`.
-10. Present the structure and ask: "Want to adjust anything before we start?"
+9. Present the structure and ask: "Want to adjust anything before we start?"
 
 ### Steps (dry-run mode)
 
@@ -179,14 +178,13 @@ _attachments/
 [paste the rendered CLAUDE.md template with [WIKI NAME], purpose, custom frontmatter table interpolated]
 
 ## Other actions
-- git init (skipped in dry-run)
 - No .raw/ files touched
 EOF
 ```
 
 End with: "Dry-run complete. Re-run without `--dry-run` to commit, or adjust the mode/purpose and re-plan."
 
-Do not call `mkdir`, Write, Edit, or `git init` during dry-run.
+Do not call `mkdir`, Write, or Edit during dry-run.
 
 ### Vault CLAUDE.md Template
 

@@ -141,7 +141,6 @@ Also install from Community Plugins:
 |--------|---------|
 | **Dataview** | Powers the dashboard queries |
 | **Templater** | Auto-fills frontmatter from templates |
-| **Obsidian Git** | Auto-commits vault every 15 minutes |
 
 ---
 
