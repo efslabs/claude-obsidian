@@ -125,32 +125,24 @@ The color scheme looks best with the Minimal theme. Install via Settings > Appea
 
 ## Mode G Variant (Guidebook / Personal Practice Library)
 
-Mode G uses eight function folders instead of the default set. Use this
-`vault-colors.css` instead of the one above when scaffolding a Mode G vault. The
-colors group by function: doing/acting in warm tones, understanding in cool tones,
-scenarios in green, sources/entities dimmed.
+Mode G uses four folders instead of the default set. Use this `vault-colors.css`
+instead of the one above when scaffolding a Mode G vault. `notes/` (all content) is
+the warm anchor color, `scenarios/` is green (entry points), and `sources/` /
+`entities/` are dimmed since they are supporting layers.
 
 ```css
 :root {
-  --wiki-1: #4fc1ff;  /* concepts   — cool: theory to understand */
-  --wiki-2: #c586c0;  /* lessons    — cool: distilled teachings */
-  --wiki-3: #dcdcaa;  /* mindsets   — warm: principles & mantras */
-  --wiki-4: #ce9178;  /* practices  — warm: things you do */
-  --wiki-5: #6a9955;  /* scenarios  — green: felt-state pages */
-  --wiki-6: #d16969;  /* frameworks — warm: multi-step systems */
-  --wiki-7: #569cd6;  /* meta       — blue-gray: catalog/dashboards */
+  --wiki-1: #ce9178;  /* notes      — warm: all content */
+  --wiki-2: #6a9955;  /* scenarios  — green: felt-state routers */
+  --wiki-3: #569cd6;  /* meta       — blue-gray: catalog/dashboards */
 }
 
 /* Folder colors in file explorer */
-.nav-folder-title[data-path^="wiki/practices"]  { color: var(--wiki-4); }
-.nav-folder-title[data-path^="wiki/mindsets"]   { color: var(--wiki-3); }
-.nav-folder-title[data-path^="wiki/frameworks"] { color: var(--wiki-6); }
-.nav-folder-title[data-path^="wiki/concepts"]   { color: var(--wiki-1); }
-.nav-folder-title[data-path^="wiki/lessons"]    { color: var(--wiki-2); }
-.nav-folder-title[data-path^="wiki/scenarios"]  { color: var(--wiki-5); }
+.nav-folder-title[data-path^="wiki/notes"]      { color: var(--wiki-1); }
+.nav-folder-title[data-path^="wiki/scenarios"]  { color: var(--wiki-2); }
 .nav-folder-title[data-path^="wiki/sources"]    { color: #808080; }
 .nav-folder-title[data-path^="wiki/entities"]   { color: #909090; }
-.nav-folder-title[data-path^="wiki/meta"]       { color: var(--wiki-7); }
+.nav-folder-title[data-path^="wiki/meta"]       { color: var(--wiki-3); }
 .nav-folder-title[data-path=".raw"]             { color: #808080; opacity: 0.6; }
 
 /* Custom callouts — same four as the default snippet */
@@ -172,6 +164,7 @@ scenarios in green, sources/entities dimmed.
 }
 ```
 
-Graph View groups for Mode G: color `path:wiki/scenarios` green,
-`path:wiki/practices` + `path:wiki/frameworks` warm, `path:wiki/concepts` +
-`path:wiki/lessons` cool, `path:.raw` dimmed gray.
+Graph View groups for Mode G: color `path:wiki/scenarios` green, `path:wiki/notes`
+warm, `path:wiki/sources` + `path:wiki/entities` dimmed gray, `path:.raw` dimmed
+gray. Function within `notes/` is not a folder — slice it with the `type:`-driven
+Dataview views in `wiki/meta/dashboard.md` instead.

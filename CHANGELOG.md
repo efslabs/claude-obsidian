@@ -4,6 +4,10 @@ All notable changes to claude-obsidian. Format: [Keep a Changelog](https://keepa
 
 ## [Unreleased]
 
+### Changed
+
+- **Mode G restructured (Guidebook / Personal Practice Library)**: collapsed the eight content folders (`practices/`, `mindsets/`, `frameworks/`, `concepts/`, `lessons/`, `scenarios/`, `sources/`, `entities/`) to four (`notes/`, `scenarios/`, `sources/`, `entities/`). All content now lives in `notes/`; page function is carried by `type:` (`practice | framework | mindset | concept`) rather than by a folder. The `lesson` type is retired — a page's `type:` reflects its function and provenance lives in the `sources:` link. The granularity rule was rewritten: one coherent unit per page, a named method with named parts is one page (parts as sections), splitting is the justified exception. The five Mode-G templates (`_templates/mode-g/`) collapse to a single `_templates/note.md`; `_templates/scenario.md` moves to the templates root. The Mode G CSS variant in `skills/wiki/references/css-snippets.md` now colors four folders. `skills/wiki/references/modes.md` and `WIKI.md` § 4.1a updated accordingly.
+
 ### Removed
 
 - **PostToolUse auto-commit hook**: `hooks/hooks.json` no longer auto-commits `wiki/`, `.raw/`, or `.vault-meta/` changes after Write/Edit tool calls. Staging and committing are now entirely the user's responsibility. `skills/wiki-fold/SKILL.md`, `skills/wiki-ingest/SKILL.md`, `docs/dragonscale-guide.md`, and the editor-integration rule files updated to drop references to the hook.

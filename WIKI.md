@@ -404,27 +404,27 @@ Key pages: `[[Book Overview]]`, `[[Theme Map]]`, `[[Character / Expert Index]]`,
 **Mode G: Guidebook / Personal Practice Library**
 
 A curated library of techniques, mantras, frameworks, and distilled teachings the
-user reaches for to handle a moment or mental state. Organizes pages by
-**function** — what you *do* with the page — rather than by life area.
+user reaches for to handle a moment or mental state. All content lives in one
+`notes/` folder; the page's **function** is carried by `type:`, not by a folder.
 
 ```
 vault/
 ├── .raw/              # source transcripts, articles, clippings, book notes
 ├── wiki/
-│   ├── practices/     # things you DO — meditations, exercises, drills
-│   ├── mindsets/      # principles & mantras — short re-orienting lines
-│   ├── frameworks/    # multi-step systems — dopamine menu, planning templates
-│   ├── concepts/      # theory to understand
-│   ├── lessons/       # distilled teachings from one source
-│   ├── scenarios/     # one page per felt state — "When I'm overwhelmed"
-│   ├── sources/       # one summary page per .raw source
-│   └── entities/      # teachers, authors, coaches, orgs, apps
+│   ├── notes/         # ALL content — practices, frameworks, mindsets, concepts
+│   ├── scenarios/     # one page per felt state — "When I'm Overwhelmed" (routers)
+│   ├── sources/       # one summary page per source; series-level pages too
+│   └── entities/      # teachers, authors, coaches, orgs, apps, books, courses
 ```
 
+Four folders, each a genuinely different page *shape*: content, router, provenance
+record, person/thing. For `notes/` pages, `type:` is the function —
+`practice | framework | mindset | concept` — distinguished by a one-page-per-
+coherent-unit rule (a named method with named parts is one page, parts as
+sections). There is no `lesson` type; provenance lives in the `sources:` link.
 Uses the shared frontmatter schema (Section 3) with one override: `status:` is
-`seed | active | retired` (a guidebook entry is in the library or retired, not
-"mature"). Subject classification via `tags:` (no parallel taxonomy). Scenario
-pages add `state`, `triggers`; lesson pages add `author`, `series`.
+`seed | active | retired`. Subject classification via `tags:` (no parallel
+taxonomy). Scenario pages add `state`, `triggers`.
 
 Key pages: `[[Library Overview]]`, the `scenarios/` set, `[[Daily Drivers]]`. Full spec in `skills/wiki/references/modes.md`.
 
