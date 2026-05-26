@@ -128,7 +128,7 @@ Triggers: any of `--dry-run`, `dry-run`, `preview`, or `plan` in the user's invo
 
 ### Steps (commit mode)
 
-1. Determine the wiki mode. Read `references/modes.md` to show the available modes (A–G) and pick the best fit. Mode G (Guidebook / Personal Practice Library) is the right pick when the vault is a curated library of techniques, mantras, and distilled teachings the user reaches for to handle a moment or mental state.
+1. Determine the wiki mode. Read `references/modes.md` to show the 6 options and pick the best fit.
 2. Ask: "What is this vault for?" (one question, then proceed).
 3. Create full folder structure under `wiki/` based on the mode.
 4. Create domain pages + `_index.md` sub-indexes.
@@ -145,7 +145,7 @@ Perform steps 1-2 (read-only — pick mode, ask purpose). Then, instead of creat
 ```bash
 cat <<'EOF'
 # Scaffold Plan — dry-run
-Mode: [A/B/C/D/E/F/G]  ([mode name])
+Mode: [A/B/C/D/E/F]  ([mode name])
 Purpose: [user's one-sentence answer]
 Target: [absolute path of working directory]
 
@@ -193,7 +193,7 @@ Create this file in the vault root when scaffolding a new project vault (not thi
 ```markdown
 # [WIKI NAME]: LLM Wiki
 
-Mode: [MODE A/B/C/D/E/F/G]
+Mode: [MODE A/B/C/D/E/F]
 Purpose: [ONE SENTENCE]
 Owner: [NAME]
 Created: YYYY-MM-DD
