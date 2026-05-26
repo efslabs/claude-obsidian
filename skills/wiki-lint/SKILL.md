@@ -25,9 +25,8 @@ Work through these in order:
 6. **Frontmatter gaps**. Pages missing required fields (type, status, created, updated, tags).
 7. **Empty sections**. Headings with no content underneath.
 8. **Stale index entries**. Items in `wiki/index.md` pointing to renamed or deleted pages.
-9. **Tag vocabulary hygiene**. Flag near-duplicate tags (e.g. `task-init` vs `task-initiation`, `cbt` vs `cbt-tools`), rarely-used tags (used once), and tags that conflict with the retired list. See the **Tag Vocabulary** section below.
-10. **Address validity** (DragonScale Mechanism 2). For every page that has an `address:` frontmatter field, validate the format. See the **Address Validation** section below.
-11. **Semantic tiling** (DragonScale Mechanism 3, opt-in). Flag candidate duplicate pages (across all scanned types, not just concepts) via embedding cosine similarity. See the **Semantic Tiling** section below.
+9. **Address validity** (DragonScale Mechanism 2). For every page that has an `address:` frontmatter field, validate the format. See the **Address Validation** section below.
+10. **Semantic tiling** (DragonScale Mechanism 3, opt-in). Flag candidate duplicate pages (across all scanned types, not just concepts) via embedding cosine similarity. See the **Semantic Tiling** section below.
 
 ---
 
@@ -156,67 +155,6 @@ Create or update `wiki/meta/overview.canvas` for a visual domain map:
 ```
 
 Add one node per domain page. Connect domains that have significant cross-references. Colors map to the CSS scheme: 1=blue, 2=purple, 3=yellow, 4=orange, 5=green, 6=red.
-
----
-
-## Tag Vocabulary
-
-`tags:` is the wiki's subject vocabulary. It grows as the vault grows, so it
-drifts: typos creep in, near-duplicates accumulate, and old slugs get abandoned.
-Lint surfaces drift; the user decides whether to merge.
-
-### Checks
-
-1. **Near-duplicate tags.** Pairs whose Levenshtein distance is `<= 2` (e.g.
-   `task-init` vs `task-initiation`, `pomodoro` vs `pomodro`). Report both with
-   their usage counts so the user picks the canonical one.
-2. **Singleton tags.** Tags used on exactly one page. These are often typos or
-   one-off experiments. Report under "Singletons — consider merging or
-   broadening."
-3. **Retired-tag usage.** If `wiki/meta/retired-tags.md` exists (optional, see
-   below), any page using a tag on that list is flagged with the suggested
-   replacement.
-
-### Optional retired-tags file
-
-`wiki/meta/retired-tags.md` (create on first merge, not at scaffold):
-
-```markdown
----
-type: meta
-title: "Retired Tags"
-updated: YYYY-MM-DD
----
-
-# Retired Tags
-
-Tags that were merged or dropped. Format: `old -> new` with the date.
-
-- `somatic -> body-awareness` (2026-05-02) — narrower-fit replacement
-- `pomodro -> pomodoro` (2026-05-10) — typo
-```
-
-This file is data, not narrative. Keep it flat so the lint check can parse it.
-
-### Output section
-
-```markdown
-## Tag Vocabulary
-
-### Near-duplicates (review)
-- `task-init` (1 page) vs `task-initiation` (14 pages) — likely the same.
-- `cbt` (8 pages) vs `cbt-tools` (2 pages) — review for merge.
-
-### Singletons (review)
-- `pomodro` — 1 page ([[…]])
-- `dopa-menu` — 1 page ([[…]])
-
-### Retired tags in use
-- `somatic` on [[Body Scan]] — use `body-awareness` per `retired-tags.md`.
-```
-
-Do NOT auto-rewrite tags. Tag merges are user-approved bulk edits, not lint
-fixes.
 
 ---
 

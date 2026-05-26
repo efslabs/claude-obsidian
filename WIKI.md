@@ -283,7 +283,7 @@ Trigger: user describes what the vault is for.
 
 You can combine modes. "GitHub repo + research on the AI approach" uses Mode B folders plus Mode E papers/ folder.
 
-### 4.1a — The Wiki Modes (A–G)
+### 4.1a — The Six Wiki Modes
 
 **Mode A: Website / Sitemap**
 
@@ -399,35 +399,6 @@ Frontmatter for concepts/: `source_chapters`, `first_appearance`
 
 Key pages: `[[Book Overview]]`, `[[Theme Map]]`, `[[Character / Expert Index]]`, `[[My Takeaways]]`
 
----
-
-**Mode G: Guidebook / Personal Practice Library**
-
-A curated library of techniques, mantras, frameworks, and distilled teachings the
-user reaches for to handle a moment or mental state. All content lives in one
-`notes/` folder; the page's **function** is carried by `type:`, not by a folder.
-
-```
-vault/
-├── .raw/              # source transcripts, articles, clippings, book notes
-├── wiki/
-│   ├── notes/         # ALL content — practices, frameworks, mindsets, concepts
-│   ├── scenarios/     # one page per felt state — "When I'm Overwhelmed" (routers)
-│   ├── sources/       # one summary page per source; series-level pages too
-│   └── entities/      # teachers, authors, coaches, orgs, apps, books, courses
-```
-
-Four folders, each a genuinely different page *shape*: content, router, provenance
-record, person/thing. For `notes/` pages, `type:` is the function —
-`practice | framework | mindset | concept` — distinguished by a one-page-per-
-coherent-unit rule (a named method with named parts is one page, parts as
-sections). There is no `lesson` type; provenance lives in the `sources:` link.
-Uses the shared frontmatter schema (Section 3) with one override: `status:` is
-`seed | active | retired`. Subject classification via `tags:` (no parallel
-taxonomy). Scenario pages add `state`, `triggers`.
-
-Key pages: `[[Library Overview]]`, the `scenarios/` set, `[[Daily Drivers]]`. Full spec in `skills/wiki/references/modes.md`.
-
 ### 4.1b — Vault CLAUDE.md Template
 
 Create this in the vault root when scaffolding a new project vault:
@@ -435,7 +406,7 @@ Create this in the vault root when scaffolding a new project vault:
 ```markdown
 # [WIKI NAME] — LLM Wiki
 
-Mode: [MODE A/B/C/D/E/F/G]
+Mode: [MODE A/B/C/D/E/F]
 Purpose: [ONE SENTENCE]
 Owner: [NAME]
 Created: YYYY-MM-DD
@@ -783,7 +754,7 @@ When creating a wiki for a new project (not this plugin), create a CLAUDE.md at 
 ```markdown
 # [WIKI NAME] — LLM Wiki
 
-Mode: [MODE A/B/C/D/E/F/G]
+Mode: [MODE A/B/C/D/E/F]
 Purpose: [ONE SENTENCE]
 Owner: [NAME]
 Created: YYYY-MM-DD
